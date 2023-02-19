@@ -1,0 +1,25 @@
+@use "./tokens/fontFamilies" as fontFamilies;
+
+body {
+  font-family: fontFamilies.$content;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: fontFamilies.$heading;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
