@@ -1,0 +1,12 @@
+.cta {
+  // change to tokens later
+  color: white;
+  background-color: rgb(71, 71, 233);
+  border-radius: 0.25em;
+  padding: 0.5em 1.5em;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.95;
+  }
+}
