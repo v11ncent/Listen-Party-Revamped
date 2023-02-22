@@ -1,6 +1,6 @@
-@use "../styles/tokens/colors" as colors;
-@use "../styles/tokens/borderRadii" as borderRadii;
-@use "../styles/tokens/contextual/backgroundColors" as backgroundColors;
+@use "../../styles/tokens/colors" as colors;
+@use "../../styles/tokens/borderRadii" as borderRadii;
+@use "../../styles/tokens/contextual/backgroundColors" as backgroundColors;
 
 .cta {
   color: colors.$color--white-100;

@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
+import LoginButton from "../Login Buttons/LoginButton";
+import LogoutButton from "../Login Buttons/LogoutButton";
 import styles from "./Navbar.module.scss";
 
 type Links = {

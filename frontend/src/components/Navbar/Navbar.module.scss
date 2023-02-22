@@ -1,7 +1,7 @@
-@use "../styles/tokens/margins" as margins;
+@use "../../styles/tokens/colors" as colors;
 
 .nav {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid colors.$color--grey-100;
 
   ul {
     display: flex;
@@ -11,7 +11,7 @@
     margin: 1.5em 0;
 
     li {
-      margin: margins.$margin--list-item;
+      margin: 0 1em;
     }
   }
 }
