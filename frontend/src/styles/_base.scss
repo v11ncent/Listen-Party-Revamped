@@ -1,7 +1,14 @@
 @use "./tokens/fontFamilies" as fontFamilies;
+@use "./tokens/margins" as margins;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  font-family: fontFamilies.$content;
+  font-family: fontFamilies.$ff--content;
 }
 
 h1,
@@ -10,7 +17,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: fontFamilies.$heading;
+  font-family: fontFamilies.$ff--heading;
 }
 
 .sr-only {
