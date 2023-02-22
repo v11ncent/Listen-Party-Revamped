@@ -11,7 +11,7 @@ const Root = () => {
         redirect_uri: import.meta.env.VITE_AUTH0_CALLBACK_URL,
       }}
     >
-      <Navbar links={["about", "contact", "hello"]} />
+      <Navbar links={[{ text: "about", to: "/about" }]} />
       <Outlet />
     </Auth0Provider>
   );
