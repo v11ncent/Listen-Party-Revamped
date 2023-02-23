@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from "react";
+import Button from "../../Button/Button";
 import styles from "./LobbyForm.module.scss";
 
 const LobbyForm = () => {
@@ -22,9 +23,13 @@ const LobbyForm = () => {
         value={nameInput}
         onChange={handleChange}
       />
-      <button type="submit" onSubmit={handleSubmit}>
-        Create a lobby
-      </button>
+      <Button
+        as="button"
+        text={"Create a lobby"}
+        primary={false}
+        onClick={handleSubmit}
+        type="submit"
+      />
     </form>
   );
 };
