@@ -14,6 +14,7 @@ const Navbar = ({ links }: { links: Links }) => {
 
   return (
     <nav className={styles.nav}>
+      <h2>Listen Party</h2>
       <ul>
         {links &&
           links.map((link, index) => (

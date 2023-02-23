@@ -2,13 +2,19 @@
 
 .nav {
   border-bottom: 1px solid colors.$color--grey-100;
+  display: flex;
+  justify-content: space-between;
+
+  h2 {
+    margin: auto 1em;
+  }
 
   ul {
     display: flex;
     justify-content: flex-end;
     list-style-type: none;
     padding: 0;
-    margin: 1.5em 0;
+    margin: 1.5em 1em;
 
     li {
       margin: 0 1em;
