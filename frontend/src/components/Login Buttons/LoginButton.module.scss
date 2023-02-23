@@ -1,13 +1,15 @@
 @use "../../styles/tokens/colors" as colors;
 @use "../../styles/tokens/borderRadii" as borderRadii;
-@use "../../styles/tokens/contextual/backgroundColors" as backgroundColors;
+@use "../../styles/tokens/fontWeights" as fontWeights;
 
 .cta {
   color: colors.$color--white-100;
-  background-color: backgroundColors.$bc--login-button;
+  background-color: colors.$color--blue-1000;
   border-radius: borderRadii.$br--1;
+  font-weight: fontWeights.$fw--500;
   padding: 0.5em 1.5em;
   cursor: pointer;
+  white-space: nowrap;
 
   &:hover {
     opacity: 0.95;
