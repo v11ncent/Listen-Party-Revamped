@@ -1,7 +1,6 @@
 type Lobbies = {
-  id: BigInteger;
+  id: number;
   name: string;
-  link: string;
 }[];
 
 const Lobbies = ({ lobbies }: { lobbies: Lobbies }) => {
