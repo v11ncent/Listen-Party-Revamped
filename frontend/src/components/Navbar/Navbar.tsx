@@ -5,7 +5,7 @@ import LogoutButton from "../Login Buttons/LogoutButton";
 import styles from "./Navbar.module.scss";
 
 type Links = {
-  text: String;
+  text: string;
   to: any;
 }[];
 

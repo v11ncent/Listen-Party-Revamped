@@ -12,6 +12,8 @@ const LobbyForm = () => {
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
+
+    // make a call to the api once I get it set up
   };
 
   return (
