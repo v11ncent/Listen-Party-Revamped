@@ -1,7 +1,13 @@
-import Sidebar from "../components/Sidebar";
+import Lobbies from "../components/Lobbies/Lobbies";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 const App = () => {
-  return <Sidebar />;
+  return (
+    <>
+      <Lobbies />
+      <Sidebar />
+    </>
+  );
 };
 
 export default App;

@@ -1,0 +1,9 @@
+@use "../../styles/tokens/colors" as colors;
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  height: 100%;
+  border-left: 1px solid colors.$color--grey-100;
+  padding: 2rem 4rem;
+}
