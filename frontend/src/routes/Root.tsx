@@ -8,7 +8,7 @@ const Root = () => {
       domain={import.meta.env.VITE_AUTH0_DOMAIN}
       clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: import.meta.env.VITE_AUTH0_CALLBACK_URL,
+        sredirect_uri: import.meta.env.VITE_AUTH0_CALLBACK_URL,
       }}
     >
       <Navbar links={[{ text: "about", to: "/about" }]} />

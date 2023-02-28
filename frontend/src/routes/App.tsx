@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 const App = () => {
   return (
     <>
-      <Lobbies />
+      <Lobbies lobbies={[{ id: 1, name: "Lobby 1" }]} />
       <Sidebar />
     </>
   );
