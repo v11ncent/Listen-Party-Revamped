@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Lobbies = {
   id: number;
@@ -6,8 +6,17 @@ type Lobbies = {
 }[];
 
 const Lobbies = ({ lobbies }: { lobbies: Lobbies }) => {
-  const [lobbiesArray, setLobbiesArray] = useState([]);
-  return <h2>Lobbies</h2>;
+  const [lobbiesArray, setLobbiesArray] = useState([] as Lobbies);
+
+  useEffect(() => {
+    setLobbiesArray(lobbies);
+  }, [[], lobbiesArray]);
+  return (
+    <ul>
+      {lobbiesArray &&
+        lobbiesArray.map((lobby) => <li key={lobby.id}>{lobby.name}</li>)}
+    </ul>
+  );
 };
 
 export default Lobbies;
