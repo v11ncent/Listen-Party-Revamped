@@ -10,7 +10,7 @@ const Lobbies = ({ lobbies }: { lobbies: Lobbies }) => {
 
   useEffect(() => {
     setLobbiesArray(lobbies);
-  }, [[], lobbiesArray]);
+  }, [[], lobbies]);
   return (
     <ul>
       {lobbiesArray &&
