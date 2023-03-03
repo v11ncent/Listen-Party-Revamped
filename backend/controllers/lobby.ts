@@ -10,7 +10,7 @@ const getLobby = (req: Request, res: Response, next: NextFunction) => {
 
 const createLobby = (req: Request, res: Response, next: NextFunction) => {
   const id = uuidv4();
-  const name: String = req.body?.name;
+  const name: String = req.body?.lobbyName;
 
   if (!name)
     res.status(400).json({
@@ -18,9 +18,11 @@ const createLobby = (req: Request, res: Response, next: NextFunction) => {
       message: "Lobby name is missing from request body.",
     });
 
-  res
-    .status(200)
-    .json({ status: 200, message: "Lobby has been created successfully." });
+  res.status(200).json({
+    status: 200,
+    message: "Lobby has been created successfully.",
+    lobbyId: id,
+  });
 };
 
 export { getLobby, createLobby };
