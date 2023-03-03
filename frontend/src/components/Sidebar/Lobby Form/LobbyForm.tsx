@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from "react";
+import axios from "axios";
 import Button from "../../Button/Button";
 import styles from "./LobbyForm.module.scss";
 
@@ -10,17 +11,19 @@ const LobbyForm = () => {
     setNameInput(event.currentTarget.value);
   };
 
-  const handleSubmit = (event: SyntheticEvent) => {
+  const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
-
-    // make a call to the api once I get it set up
+    // Implement the following:
+    // https://bobbyhadz.com/blog/typescript-http-request-axios
+    const response = await axios.post("localhost:8080/lobby");
+    console.log(response);
   };
 
   return (
     <form className={styles.form}>
       <input
         type="text"
-        name="lobbyName"
+        name="name"
         placeholder={"Lobby name"}
         value={nameInput}
         onChange={handleChange}
