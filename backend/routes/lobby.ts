@@ -1,11 +1,11 @@
 import express, { Router } from "express";
 import { getLobby, createLobby } from "../controllers/lobby";
 
-const router: Router = express.Router();
+const lobbyRouter: Router = express.Router();
 
-router.get("/lobby", getLobby);
-router.post("/lobby", createLobby);
-router.put("/lobby");
-router.delete("/lobby");
+lobbyRouter.get("/lobby", getLobby);
+lobbyRouter.post("/lobby", createLobby);
+lobbyRouter.put("/lobby");
+lobbyRouter.delete("/lobby");
 
-export { router };
+export { lobbyRouter };
