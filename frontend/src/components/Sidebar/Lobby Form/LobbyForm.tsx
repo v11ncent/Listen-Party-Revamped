@@ -22,7 +22,7 @@ const LobbyForm = () => {
     // Implement the following:
     // https://bobbyhadz.com/blog/typescript-http-request-axios
     const response = await axios.post<LobbyCreationResponse>(
-      "http://localhost:8080/lobby",
+      `${import.meta.env.VITE_API_SERVER_URL}/lobby`,
       {
         lobbyName: name,
       }
