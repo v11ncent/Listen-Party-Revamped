@@ -11,7 +11,6 @@ const Lobbies = ({ lobbies }: { lobbies: Lobbies }) => {
   useEffect(() => {
     setLobbiesArray(lobbies);
   }, [[], lobbies]);
-
   return (
     <ul>
       {lobbiesArray &&
