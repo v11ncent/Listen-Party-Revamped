@@ -1,11 +1,11 @@
 import LobbyForm from "./Lobby Form/LobbyForm";
 import styles from "./Sidebar.module.scss";
 
-const Sidebar = () => {
+const Sidebar = ({ addLobby }: { addLobby: Function }) => {
   return (
     <aside className={styles.sidebar}>
       <h2>Create a lobby</h2>
-      <LobbyForm />
+      <LobbyForm addLobby={addLobby} />
     </aside>
   );
 };

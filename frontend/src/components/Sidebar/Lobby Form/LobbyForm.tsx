@@ -3,13 +3,7 @@ import axios from "axios";
 import Button from "../../Button/Button";
 import styles from "./LobbyForm.module.scss";
 
-type LobbyCreationResponse = {
-  status: number;
-  message: string;
-  lobbyId: string;
-};
-
-const LobbyForm = () => {
+const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
   const [name, setName] = useState("");
 
   // https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/forms_and_events/
@@ -19,16 +13,9 @@ const LobbyForm = () => {
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    // Implement the following:
-    // https://bobbyhadz.com/blog/typescript-http-request-axios
-    const response = await axios.post<LobbyCreationResponse>(
-      `${import.meta.env.VITE_API_SERVER_URL}/lobby`,
-      {
-        lobbyName: name,
-      }
-    );
-
-    console.log(response);
+    addLobby({ id: 10, name: "Lobby Test" });
+    // make a call to the api once I get it set up
+    setName("");
   };
 
   return (
