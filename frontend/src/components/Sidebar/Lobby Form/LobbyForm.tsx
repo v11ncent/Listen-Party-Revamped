@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import Button from "../../Button/Button";
 import styles from "./LobbyForm.module.scss";
@@ -13,7 +14,8 @@ const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    addLobby({ id: 10, name: "Lobby Test" });
+    const uuid = uuidv4();
+    addLobby({ id: uuid, name: name });
     // make a call to the api once I get it set up
     setName("");
   };
