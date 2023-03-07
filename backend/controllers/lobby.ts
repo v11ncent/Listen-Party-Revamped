@@ -8,8 +8,8 @@ const getLobby = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const createLobby = (req: Request, res: Response, next: NextFunction) => {
-  const name: String = req.body?.lobbyName;
-  const id: String = req.body?.uuid;
+  const id: String = req.body?.id;
+  const name: String = req.body?.name;
 
   if (!name)
     res.status(400).json({

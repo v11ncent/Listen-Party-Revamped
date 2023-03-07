@@ -4,20 +4,26 @@ import axios from "axios";
 import Button from "../../Button/Button";
 import styles from "./LobbyForm.module.scss";
 
+const createLobbyUri = import.meta.env.VITE_API_CREATE_LOBBY;
+
 const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
-  const [name, setName] = useState("");
+  const [lobbyName, setLobbyName] = useState("");
 
   // https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/forms_and_events/
   const handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
-    setName(event.currentTarget.value);
+    setLobbyName(event.currentTarget.value);
   };
 
   const handleSubmit = async (event: SyntheticEvent) => {
+    const newLobby = {
+      id: uuidv4(),
+      name: lobbyName,
+    };
+
     event.preventDefault();
-    const uuid = uuidv4();
-    addLobby({ id: uuid, name: name });
-    // make a call to the api once I get it set up
-    setName("");
+    addLobby(newLobby); // add lobby to Lobbies state in presentation layer
+    await axios.post(createLobbyUri, newLobby); // post lobby to database
+    setLobbyName("");
   };
 
   return (
@@ -26,7 +32,7 @@ const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
         type="text"
         name="name"
         placeholder={"Lobby name"}
-        value={name}
+        value={lobbyName}
         onChange={handleChange}
       />
       <Button
