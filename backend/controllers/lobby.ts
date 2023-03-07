@@ -1,5 +1,4 @@
 import express, { Request, Response, NextFunction } from "express";
-import { v4 as uuidv4 } from "uuid";
 
 const getLobby = (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({
@@ -9,8 +8,8 @@ const getLobby = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const createLobby = (req: Request, res: Response, next: NextFunction) => {
-  const id = uuidv4();
-  const name: String = req.body?.lobbyName;
+  const id: String = req.body?.id;
+  const name: String = req.body?.name;
 
   if (!name)
     res.status(400).json({
