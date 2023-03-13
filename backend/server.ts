@@ -3,6 +3,7 @@
 import express, { Express, Request, Response, Router } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import connectToDb from "./mongo";
 import { lobbyRouter } from "./routes/lobby";
 
 dotenv.config();
@@ -16,6 +17,8 @@ const options: cors.CorsOptions = {
 app.use(cors(options));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const response = connectToDb(process.env.MONGO_CONNECTION_STRING as string);
 
 app.use("/", lobbyRouter);
 

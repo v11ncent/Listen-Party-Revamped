@@ -12,4 +12,4 @@ const lobbySchema = new Schema<tLobby>({
 
 const Lobby = model<tLobby>("Lobby", lobbySchema);
 
-module.exports = { LobbyModel: Lobby };
+export { Lobby as LobbyModel };
