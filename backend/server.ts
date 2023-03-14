@@ -18,7 +18,7 @@ app.use(cors(options));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const response = connectToDb(process.env.MONGO_CONNECTION_STRING as string);
+connectToDb(process.env.MONGO_CONNECTION_STRING as string);
 
 app.use("/", lobbyRouter);
 

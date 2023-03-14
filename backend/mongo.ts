@@ -1,6 +1,6 @@
 import mongoose, { connect } from "mongoose";
 
-const connectToDb = (connectionString: string) => {
+const connectToDb = (connectionString: string): void => {
   try {
     mongoose.connect(connectionString);
   } catch (error: any) {

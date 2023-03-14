@@ -1,15 +1,15 @@
 import { Schema, model } from "mongoose";
 
-type tLobby = {
+type Lobby = {
   id: string;
   name: string;
 };
 
-const lobbySchema = new Schema<tLobby>({
-  id: { type: String, required: true },
+const lobbySchema = new Schema<Lobby>({
+  id: { type: String, required: true, unique: true },
   name: { type: String, required: true },
 });
 
-const Lobby = model<tLobby>("Lobby", lobbySchema);
+const Lobby = model<Lobby>("Lobby", lobbySchema);
 
 export { Lobby as LobbyModel };

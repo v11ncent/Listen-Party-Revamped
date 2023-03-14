@@ -1,18 +1,27 @@
-import express, { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import { LobbyModel } from "../models/Lobby";
 
 dotenv.config();
 
-const getLobby = (req: Request, res: Response, next: NextFunction) => {
+type Lobby = {
+  id: string;
+  name: string;
+};
+
+const getLobby = async (req: Request, res: Response, next: NextFunction) => {
+  const id: string = req.params.lobbyId;
+  const foundLobby = LobbyModel.findById(id);
+
   res.status(200).json({
     status: 200,
-    message: "Successfully made GET request to /lobby endpoint.",
+    message: `Successfully found a lobby with id of ${id}.`,
+    lobby: foundLobby,
   });
 };
 
-const createLobby = (req: Request, res: Response, next: NextFunction) => {
-  const id: String = req.body?.id;
+const createLobby = async (req: Request, res: Response, next: NextFunction) => {
+  const id: String = req.params?.id;
   const name: String = req.body?.name;
 
   if (!name)
@@ -27,6 +36,9 @@ const createLobby = (req: Request, res: Response, next: NextFunction) => {
       message: "Lobby id is missing from request body.",
     });
   }
+
+  const newLobby = new LobbyModel({ id: id, name: name });
+  newLobby.save();
 
   res.status(200).json({
     status: 200,
