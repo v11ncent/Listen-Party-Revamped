@@ -4,11 +4,6 @@ import { LobbyModel } from "../models/Lobby";
 
 dotenv.config();
 
-type Lobby = {
-  id: string;
-  name: string;
-};
-
 const getLobby = async (req: Request, res: Response, next: NextFunction) => {
   const id: string = req.params.lobbyId;
   const foundLobby = LobbyModel.findById(id);
