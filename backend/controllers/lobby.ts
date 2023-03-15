@@ -1,15 +1,22 @@
-import express, { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
+import dotenv from "dotenv";
+import { LobbyModel } from "../models/Lobby";
 
-const getLobby = (req: Request, res: Response, next: NextFunction) => {
+dotenv.config();
+
+const getLobby = async (req: Request, res: Response, next: NextFunction) => {
+  const id: string = req.params.lobbyId;
+  const foundLobby = LobbyModel.findById(id);
+
   res.status(200).json({
     status: 200,
-    message: "Successfully made GET request to /lobby endpoint.",
+    message: `Successfully found a lobby with id of ${id}.`,
+    lobby: foundLobby,
   });
 };
 
-const createLobby = (req: Request, res: Response, next: NextFunction) => {
-  const id: String = req.body?.id;
-  const name: String = req.body?.name;
+const createLobby = async (req: Request, res: Response, next: NextFunction) => {
+  const name: string = req.body?.name;
 
   if (!name)
     res.status(400).json({
@@ -17,11 +24,21 @@ const createLobby = (req: Request, res: Response, next: NextFunction) => {
       message: "Lobby name is missing from request body.",
     });
 
-  res.status(200).json({
-    status: 200,
-    message: "Lobby has been created successfully.",
-    lobbyId: id,
-  });
+  try {
+    const newLobby = new LobbyModel({ name: name });
+    newLobby.save();
+
+    res.status(200).json({
+      status: 200,
+      message: "Lobby has been created successfully.",
+      lobby: newLobby,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      message: "Server error. Please try again.",
+    });
+  }
 };
 
 export { getLobby, createLobby };

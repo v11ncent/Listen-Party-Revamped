@@ -3,6 +3,8 @@
 import express, { Express, Request, Response, Router } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import connectToDb from "./mongo";
+import checkEnvExists from "./functions/checkEnvExists";
 import { lobbyRouter } from "./routes/lobby";
 
 dotenv.config();
@@ -10,12 +12,14 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT;
 const options: cors.CorsOptions = {
-  origin: process.env.ALLOWED_ORIGINS,
+  origin: checkEnvExists("ALLOWED_ORIGINS"),
 };
 
 app.use(cors(options));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+connectToDb(checkEnvExists("MONGO_CONNECTION_STRING"));
 
 app.use("/", lobbyRouter);
 

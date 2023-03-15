@@ -1,8 +1,12 @@
 import { SyntheticEvent, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import Button from "../../Button/Button";
 import styles from "./LobbyForm.module.scss";
+
+type Lobby = {
+  id: string | null;
+  name: string;
+};
 
 const createLobbyUri = import.meta.env.VITE_API_CREATE_LOBBY;
 
@@ -15,14 +19,19 @@ const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
   };
 
   const handleSubmit = async (event: SyntheticEvent) => {
-    const newLobby = {
-      id: uuidv4(),
+    const newLobby: Lobby = {
+      id: null,
       name: lobbyName,
     };
 
     event.preventDefault();
-    addLobby(newLobby); // add lobby to Lobbies state in presentation layer
-    await axios.post(createLobbyUri, newLobby); // post lobby to database
+    // post lobby to database
+    const response = await axios.post(createLobbyUri, newLobby); // add type declaration back
+    newLobby.id = response.data.lobby._id;
+    // add lobby to Lobbies state in presentation layer
+    console.log(newLobby);
+    addLobby(newLobby);
+
     setLobbyName("");
   };
 
