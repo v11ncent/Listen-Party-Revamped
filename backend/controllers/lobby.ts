@@ -21,8 +21,8 @@ const getLobby = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 const createLobby = async (req: Request, res: Response, next: NextFunction) => {
-  const _id: String = req.params?.id;
-  const name: String = req.body?.name;
+  const name: string = req.body?.name;
+  console.log(req.body.name);
 
   if (!name)
     res.status(400).json({
@@ -30,21 +30,21 @@ const createLobby = async (req: Request, res: Response, next: NextFunction) => {
       message: "Lobby name is missing from request body.",
     });
 
-  if (!_id) {
-    res.status(400).json({
-      status: 400,
-      message: "Lobby id is missing from request body.",
+  try {
+    const newLobby = new LobbyModel({ name: name });
+    newLobby.save();
+
+    res.status(200).json({
+      status: 200,
+      message: "Lobby has been created successfully.",
+      lobby: newLobby,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      message: "Server error. Please try again.",
     });
   }
-
-  const newLobby = new LobbyModel({ _id: _id, name: name });
-  newLobby.save();
-
-  res.status(200).json({
-    status: 200,
-    message: "Lobby has been created successfully.",
-    lobbyId: _id,
-  });
 };
 
 export { getLobby, createLobby };
