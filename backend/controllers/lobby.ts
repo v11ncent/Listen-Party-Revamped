@@ -22,7 +22,6 @@ const getLobby = async (req: Request, res: Response, next: NextFunction) => {
 
 const createLobby = async (req: Request, res: Response, next: NextFunction) => {
   const name: string = req.body?.name;
-  console.log(req.body.name);
 
   if (!name)
     res.status(400).json({
