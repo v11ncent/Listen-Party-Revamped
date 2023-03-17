@@ -1,21 +1,17 @@
+import { useState, useEffect } from "react";
+import type { Button } from "../../../../types/client/index";
 import styles from "./Button.module.scss";
 
-type Button = {
-  as: React.ElementType;
-  text: string;
-  primary: Boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  type?: string;
-};
-
 const Button = ({ as = "button", text, primary, onClick, type }: Button) => {
+  const [className, setClassName] = useState<string>(styles.primary);
   const Component = as;
-  let classNames = "" as string;
-  // button has 2 styles: primary or secondary
-  primary ? (classNames = styles.primary) : (classNames = styles.secondary);
+
+  useEffect(() => {
+    if (!primary) setClassName(styles.secondary);
+  }, []);
 
   return (
-    <Component as={as} onClick={onClick} className={classNames} type={type}>
+    <Component as={as} onClick={onClick} className={className} type={type}>
       {text}
     </Component>
   );

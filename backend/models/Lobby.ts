@@ -1,13 +1,10 @@
 import { Schema, model } from "mongoose";
-
-type Lobby = {
-  name: string;
-};
+import type { Lobby } from "../../types/global/index";
 
 const lobbySchema = new Schema<Lobby>({
   name: { type: String, required: true },
 });
 
-const Lobby = model<Lobby>("Lobby", lobbySchema);
+const LobbyModel = model<Lobby>("Lobby", lobbySchema);
 
-export { Lobby as LobbyModel };
+export { LobbyModel };

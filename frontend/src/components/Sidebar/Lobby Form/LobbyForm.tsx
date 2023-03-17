@@ -26,12 +26,11 @@ const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
 
     event.preventDefault();
     // post lobby to database
-    const response = await axios.post(createLobbyUri, newLobby); // add type declaration back
+    const response = await axios.post<string, Lobby>(createLobbyUri, newLobby);
     newLobby.id = response.data.lobby._id;
     // add lobby to Lobbies state in presentation layer
     console.log(newLobby);
     addLobby(newLobby);
-
     setLobbyName("");
   };
 
