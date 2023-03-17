@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Lobbies } from "../../../../types/client/index";
+import { TLobbies } from "../../../../types/client/index";
 
-const Lobbies = ({ lobbies }: { lobbies: Lobbies }) => {
-  const [lobbiesArray, setLobbiesArray] = useState([] as Lobbies);
+const Lobbies = ({ lobbies }: { lobbies: TLobbies }) => {
+  const [lobbiesArray, setLobbiesArray] = useState([] as TLobbies);
 
   useEffect(() => {
     setLobbiesArray(lobbies);

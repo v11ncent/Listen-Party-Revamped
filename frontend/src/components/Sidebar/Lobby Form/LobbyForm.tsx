@@ -1,10 +1,8 @@
 import { SyntheticEvent, useState } from "react";
 import axios from "axios";
 import Button from "../../Button/Button";
-import type { Lobby } from "../../../../../types/global/index";
+import { TLobby } from "../../../../../types/global/index";
 import styles from "./LobbyForm.module.scss";
-
-const createLobbyUri: string = import.meta.env.VITE_API_CREATE_LOBBY;
 
 const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
   const [lobbyName, setLobbyName] = useState<string>("");
@@ -15,16 +13,13 @@ const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
   };
 
   const handleSubmit = async (event: SyntheticEvent) => {
-    const newLobby: Lobby = {
+    event.preventDefault();
+    const createLobbyUri: string = import.meta.env.VITE_API_CREATE_LOBBY;
+    const newLobby: TLobby = {
       name: lobbyName,
     };
 
-    event.preventDefault();
-    // post lobby to database
-    const response = await axios.post<string, Lobby>(createLobbyUri, newLobby);
-    newLobby.id = response.data.lobby._id;
-    // add lobby to Lobbies state in presentation layer
-    console.log(newLobby);
+    const response = await axios.post(createLobbyUri, newLobby); // post lobby to database
     addLobby(newLobby);
     setLobbyName("");
   };

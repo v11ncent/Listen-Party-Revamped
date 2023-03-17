@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import type { Button } from "../../../../types/client/index";
+import { TButton } from "../../../../types/client/index";
 import styles from "./Button.module.scss";
 
-const Button = ({ as = "button", text, primary, onClick, type }: Button) => {
+const Button = ({ as = "button", text, primary, onClick, type }: TButton) => {
   const [className, setClassName] = useState<string>(styles.primary);
   const Component = as;
 
