@@ -1,4 +1,4 @@
-export type Lobbies = {
+export type TLobbies = {
   id: number;
   name: string;
 }[];

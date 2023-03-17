@@ -1,1 +1,1 @@
-export type * from "./Lobby";
+export * from "./Lobby";

@@ -1,3 +1,3 @@
 export type * from "./Button";
-export type * from "./Links";
-export type * from "./Lobbies";
+export * from "./Links";
+export * from "./Lobbies";

@@ -30,7 +30,7 @@ const createLobby = async (req: Request, res: Response, next: NextFunction) => {
 
     res.status(200).json({
       status: 200,
-      message: "Lobby has been created successfully.",
+      message: "Lobby successfully created.",
       lobby: newLobby,
     });
   } catch (error) {

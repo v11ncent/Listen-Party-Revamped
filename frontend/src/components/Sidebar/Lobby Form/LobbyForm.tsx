@@ -20,6 +20,7 @@ const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
     };
 
     const response = await axios.post(createLobbyUri, newLobby); // post lobby to database
+    newLobby.id = response.data.lobby._id;
     addLobby(newLobby);
     setLobbyName("");
   };
