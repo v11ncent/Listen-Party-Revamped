@@ -9,6 +9,7 @@
   "author": "vince1444 <vince1444dev@gmail.com> (https://github.com/vince1444)",
   "license": "ISC",
   "dependencies": {
+    "@types/react": "^18.0.28",
     "typescript": "^5.0.2"
   }
 }
