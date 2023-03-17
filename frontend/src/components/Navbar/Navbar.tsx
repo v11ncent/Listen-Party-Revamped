@@ -2,15 +2,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import LoginButton from "../Login Buttons/LoginButton";
 import LogoutButton from "../Login Buttons/LogoutButton";
+import { TLinks } from "../../../../types/client/index";
 import styles from "./Navbar.module.scss";
 
-type Links = {
-  text: string;
-  to: any;
-}[];
-
-const Navbar = ({ links }: { links: Links }) => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+const Navbar = ({ links }: { links: TLinks }) => {
+  const { isAuthenticated } = useAuth0();
 
   return (
     <nav className={styles.nav}>
