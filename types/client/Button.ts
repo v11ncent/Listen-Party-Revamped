@@ -1,4 +1,4 @@
-export type Button = {
+export type TButton = {
   as: React.ElementType;
   text: string;
   primary: Boolean;
