@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { TLobbies } from "../../../../types/client/index";
 import { Link } from "react-router-dom";
+import { TLobbies } from "../../../../types/client/index";
 
 const Lobbies = ({ lobbies }: { lobbies: TLobbies }) => {
   const [lobbiesArray, setLobbiesArray] = useState([] as TLobbies);
