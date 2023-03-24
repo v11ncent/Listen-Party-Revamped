@@ -14,7 +14,9 @@ const Lobbies = ({ lobbies }: { lobbies: TLobbies }) => {
       {lobbiesArray &&
         lobbiesArray.map((lobby) => (
           <li key={lobby.id}>
-            <Link to={`/lobby/${lobby.id}`}>{lobby.name}</Link>
+            <Link to={`/lobby/${lobby.id}`} state={{ lobby: lobby }}>
+              {lobby.name}
+            </Link>
           </li>
         ))}
     </ul>
