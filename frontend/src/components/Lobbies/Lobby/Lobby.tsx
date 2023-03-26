@@ -28,7 +28,7 @@ const Lobby = () => {
       <section>
         <h2>
           {lobbyInfo
-            ? `Lobby #${lobbyInfo.id} : ${lobbyInfo.name}`
+            ? `${lobbyInfo.name} (id: ${lobbyInfo.id})`
             : "Welcome to the lobby"}
         </h2>
         <ul>
