@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import { LobbyModel } from "../models/Lobby";
+import { TLobby } from "../../types/global";
 
 dotenv.config();
 
@@ -25,12 +26,18 @@ const createLobby = async (req: Request, res: Response, next: NextFunction) => {
     });
 
   try {
-    const newLobby = new LobbyModel({ name: name });
-    newLobby.save();
+    const newLobby = new LobbyModel<TLobby>({
+      name: name,
+      messages: [
+        { username: "vince1444", timestamp: new Date(), data: "Hello, world!" },
+      ],
+    });
+
+    await newLobby.save();
 
     res.status(200).json({
       status: 200,
-      message: "Lobby successfully created.",
+      message: "Lobby successfully createdx.",
       lobby: newLobby,
     });
   } catch (error) {

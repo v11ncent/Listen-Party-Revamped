@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { TMessage } from "../../../../../types/client/index";
 import { TLobby } from "../../../../../types/global";
+import styles from "./Lobby.module.scss";
 
 const Lobby = () => {
   const [messages, setMessages] = useState<TMessage[] | null>(null);
@@ -23,14 +24,10 @@ const Lobby = () => {
   }, []);
 
   return (
-    <main>
-      <h1>Lobby!</h1>
+    <main className={styles.lobby}>
+      <h1>{lobbyInfo ? `Lobby: ${lobbyInfo.name}` : "Welcome to the lobby"}</h1>
+      {lobbyInfo?.id && <i>id: {lobbyInfo.id}</i>}
       <section>
-        <h2>
-          {lobbyInfo
-            ? `Lobby #${lobbyInfo.id} : ${lobbyInfo.name}`
-            : "Welcome to the lobby"}
-        </h2>
         <ul>
           {messages &&
             messages.map((message) => (
