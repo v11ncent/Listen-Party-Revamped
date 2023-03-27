@@ -1,15 +1,4 @@
-@use "../../../styles/tokens/colors" as colors;
-
 .lobby {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  border-right: 1px solid colors.$color--grey-100;
-  min-height: 100%;
-  max-width: fit-content;
-  position: fixed;
-  left: 0;
-
   .header {
     margin-bottom: 1rem;
   }

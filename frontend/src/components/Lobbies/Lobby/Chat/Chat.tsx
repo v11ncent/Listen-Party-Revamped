@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import { TLobby } from "../../../../../../types/global";
 import { TMessage } from "../../../../../../types/client";
+import Header from "./Header/Header";
 import Message from "./Message/Message";
-import styles from "./Chat.module.scss";
 import MessageForm from "./Message Form/MessageForm";
+import styles from "./Chat.module.scss";
 
-const Chat = () => {
+const Chat = ({ lobbyInfo }: { lobbyInfo: TLobby }) => {
   const [messages, setMessages] = useState<TMessage[] | null>(null);
   const socketRef = useRef(null);
 
@@ -27,7 +29,8 @@ const Chat = () => {
 
   return (
     <>
-      <section>
+      <aside className={styles.chat}>
+        <Header lobbyInfo={lobbyInfo} />
         <ol className={styles.list}>
           {messages &&
             messages.map((message: TMessage) => (
@@ -35,7 +38,7 @@ const Chat = () => {
             ))}
         </ol>
         <MessageForm />
-      </section>
+      </aside>
     </>
   );
 };
