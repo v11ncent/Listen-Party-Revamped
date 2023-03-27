@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { TMessage } from "../../../../../../types/client";
+import Message from "./Message/Message";
 import styles from "./Chat.module.scss";
 
 const Chat = () => {
   const [messages, setMessages] = useState<TMessage[] | null>(null);
+  const socketRef = useRef(null);
 
   useEffect(() => {
     setMessages([
@@ -13,22 +15,23 @@ const Chat = () => {
         timestamp: new Date(),
         message: "Hello, world!",
       },
+      {
+        id: "2",
+        username: "vince144",
+        timestamp: new Date(),
+        message: "Hello, world!",
+      },
     ]);
   }, []);
 
   return (
     <section>
-      <ul>
+      <ol>
         {messages &&
-          messages.map((message) => (
-            <li key={message.id}>
-              <p>
-                {message.username} ({message.timestamp.toLocaleDateString()}):{" "}
-                {message.message}
-              </p>
-            </li>
+          messages.map((message: TMessage) => (
+            <Message key={message.id} message={message} />
           ))}
-      </ul>
+      </ol>
     </section>
   );
 };
