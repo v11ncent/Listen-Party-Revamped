@@ -1,0 +1,10 @@
+@use "../../../../../styles/tokens/paddings" as paddings;
+
+.form > div {
+  display: flex;
+
+  .input {
+    padding: paddings.$padding-input;
+    flex: 1;
+  }
+}

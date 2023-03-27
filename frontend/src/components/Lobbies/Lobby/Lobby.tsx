@@ -12,12 +12,16 @@ const Lobby = () => {
 
   useEffect(() => {
     setLobbyInfo(lobby);
-  }, []);
+  }, [lobby]);
 
   return (
     <main className={styles.lobby}>
-      <h1>{lobbyInfo ? `Lobby: ${lobbyInfo.name}` : "Welcome to the lobby"}</h1>
-      {lobbyInfo?.id && <i>id: {lobbyInfo.id}</i>}
+      <header className={styles.header}>
+        <h1>
+          {lobbyInfo ? `Lobby: ${lobbyInfo.name}` : "Welcome to the lobby"}
+        </h1>
+        {lobbyInfo?.id && <i>id: {lobbyInfo.id}</i>}
+      </header>
       <Chat />
     </main>
   );

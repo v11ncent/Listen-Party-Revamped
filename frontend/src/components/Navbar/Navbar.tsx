@@ -1,8 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import { TLinks } from "../../../../types/client/index";
 import LoginButton from "../Login Buttons/LoginButton";
 import LogoutButton from "../Login Buttons/LogoutButton";
-import { TLinks } from "../../../../types/client/index";
 import styles from "./Navbar.module.scss";
 
 const Navbar = ({ links }: { links: TLinks }) => {
@@ -10,7 +10,7 @@ const Navbar = ({ links }: { links: TLinks }) => {
 
   return (
     <nav className={styles.nav}>
-      <h2>Listen Party</h2>
+      <p className={styles.logo}>Listen Party</p>
       <ul>
         {links &&
           links.map((link, index) => (
