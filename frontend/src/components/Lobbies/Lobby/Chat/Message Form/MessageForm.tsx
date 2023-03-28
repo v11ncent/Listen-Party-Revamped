@@ -4,7 +4,7 @@ import styles from "./MessageForm.module.scss";
 
 const CREATE_MESSAGE_URI: string = import.meta.env.VITE_API_CREATE_MESSAGE;
 
-const MessageForm = () => {
+const MessageForm = ({ lobbyId }: { lobbyId: string }) => {
   const [message, setMessage] = useState("");
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -19,6 +19,7 @@ const MessageForm = () => {
     event.preventDefault();
 
     const newMessage = {
+      lobbyId: lobbyId,
       username: "vince1444", // temporary
       timestamp: new Date(),
       data: message, // temporary
@@ -26,6 +27,7 @@ const MessageForm = () => {
 
     const response = await axios.post(CREATE_MESSAGE_URI, newMessage);
     console.log(response);
+    setMessage("");
   };
 
   return (

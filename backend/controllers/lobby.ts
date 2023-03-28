@@ -19,11 +19,14 @@ const getLobby = async (req: Request, res: Response, next: NextFunction) => {
 const createLobby = async (req: Request, res: Response, next: NextFunction) => {
   const name: string = req.body?.name;
 
-  if (!name)
+  if (!name) {
     res.status(400).json({
       status: 400,
       message: "Lobby name is missing from request body.",
     });
+
+    return;
+  }
 
   try {
     const newLobby = new LobbyModel<TLobby>({
@@ -53,6 +56,7 @@ const createMessage = async (
   res: Response,
   next: NextFunction
 ) => {
+  const lobbyId: string = req.body?.lobbyId;
   const username: string = req.body?.username;
   const timestamp: Date = req.body?.timestamp;
   const data: string = req.body?.data;
@@ -62,17 +66,27 @@ const createMessage = async (
       status: 400,
       message: "Missing parameters in request body.",
     });
+
+    return;
   }
 
   const newMessage: TMessage = {
     id: null,
-    username: req.body?.username,
-    timestamp: req.body?.timestamp,
-    data: req.body?.data,
+    username: username,
+    timestamp: timestamp,
+    data: data,
   };
 
   try {
-    // logic to add message to lobby in MongoDb
+    const foundLobby = await LobbyModel.findById(lobbyId);
+
+    if (!foundLobby || !foundLobby.messages) {
+      throw new Error();
+    }
+
+    foundLobby.messages.push(newMessage);
+    await foundLobby.save();
+
     res.status(200).json({
       status: 200,
       message: "Message successfully added to lobby.",
