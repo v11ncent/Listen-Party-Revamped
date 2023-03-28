@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./MessageForm.module.scss";
 
+const CREATE_MESSAGE_URI: string = import.meta.env.VITE_API_CREATE_MESSAGE;
+
 const MessageForm = () => {
   const [message, setMessage] = useState("");
 
@@ -9,16 +11,22 @@ const MessageForm = () => {
     setMessage(event.currentTarget.value);
   };
 
-  const handleSubmit = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+  const handleSubmit = async (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ): Promise<void> => {
     if (event.key !== "Enter") return;
 
     event.preventDefault();
-    console.log("enter key pressed");
-  };
 
-  useEffect(() => {
-    console.log(message);
-  }, [message]);
+    const newMessage = {
+      username: "vince1444", // temporary
+      timestamp: new Date(),
+      data: "Hello, world!", // temporary
+    };
+
+    const response = await axios.post(CREATE_MESSAGE_URI, newMessage);
+    console.log(response);
+  };
 
   return (
     <form action="/test" method="POST" className={styles.form}>

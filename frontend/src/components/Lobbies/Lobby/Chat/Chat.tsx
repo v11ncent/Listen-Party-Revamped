@@ -28,18 +28,16 @@ const Chat = ({ lobbyInfo }: { lobbyInfo: TLobby }) => {
   }, []);
 
   return (
-    <>
-      <aside className={styles.chat}>
-        <Header lobbyInfo={lobbyInfo} />
-        <ol className={styles.list}>
-          {messages &&
-            messages.map((message: TMessage) => (
-              <Message key={message.id} message={message} />
-            ))}
-        </ol>
-        <MessageForm />
-      </aside>
-    </>
+    <section className={styles.chat}>
+      <Header lobbyInfo={lobbyInfo} />
+      <ol className={styles.list}>
+        {messages &&
+          messages.map((message: TMessage) => (
+            <Message key={message.id} message={message} />
+          ))}
+      </ol>
+      <MessageForm />
+    </section>
   );
 };
 
