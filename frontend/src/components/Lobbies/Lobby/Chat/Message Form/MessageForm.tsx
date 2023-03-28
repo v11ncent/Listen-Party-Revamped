@@ -21,7 +21,7 @@ const MessageForm = () => {
     const newMessage = {
       username: "vince1444", // temporary
       timestamp: new Date(),
-      data: "Hello, world!", // temporary
+      data: message, // temporary
     };
 
     const response = await axios.post(CREATE_MESSAGE_URI, newMessage);
