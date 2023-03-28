@@ -4,6 +4,8 @@ import Button from "../../Button/Button";
 import { TLobby } from "../../../../../types/global/index";
 import styles from "./LobbyForm.module.scss";
 
+const CREATE_LOBBY_URI: string = import.meta.env.VITE_API_CREATE_LOBBY;
+
 const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
   const [lobbyName, setLobbyName] = useState<string>("");
 
@@ -14,12 +16,11 @@ const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    const createLobbyUri: string = import.meta.env.VITE_API_CREATE_LOBBY;
     const newLobby: TLobby = {
       name: lobbyName,
     };
 
-    const response = await axios.post(createLobbyUri, newLobby); // post lobby to database
+    const response = await axios.post(CREATE_LOBBY_URI, newLobby); // post lobby to database
     newLobby.id = response.data.lobby._id;
     addLobby(newLobby);
     setLobbyName("");
