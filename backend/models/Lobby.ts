@@ -1,11 +1,6 @@
 import { Schema, model } from "mongoose";
-import { TLobby, TMessage } from "../../types/global/index";
-
-const messageSchema = new Schema<TMessage>({
-  username: { type: String, required: true },
-  timestamp: { type: Date, required: true },
-  message: { type: String, required: true },
-});
+import { messageSchema } from "./Message";
+import { TLobby } from "../../types/global/index";
 
 const lobbySchema = new Schema<TLobby>({
   id: String,

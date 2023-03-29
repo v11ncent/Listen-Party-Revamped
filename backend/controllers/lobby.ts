@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import { LobbyModel } from "../models/Lobby";
+import { MessageModel } from "../models/Message";
 import { TLobby, TMessage } from "../../types/global";
 
 dotenv.config();
@@ -74,11 +75,11 @@ const createMessage = async (
     return;
   }
 
-  const newMessage: TMessage = {
+  const newMessage = new MessageModel<TMessage>({
     username: username,
     timestamp: timestamp,
     message: message,
-  };
+  });
 
   // refactor try..catch block
 
@@ -90,16 +91,7 @@ const createMessage = async (
     }
 
     foundLobby.messages.push(newMessage);
-    const response = await foundLobby.save();
-
-    // refactor
-
-    // if (response && response.messages) {
-    //   newMessage._id =
-    //     response.messages[response.messages.length - 1]._id.toString();
-    // }
-
-    console.log(newMessage);
+    await foundLobby.save();
 
     res.status(200).json({
       status: 200,
