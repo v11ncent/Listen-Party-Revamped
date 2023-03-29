@@ -36,7 +36,8 @@ const Chat = ({ lobbyInfo }: { lobbyInfo: TLobby }) => {
             <Message key={message.id} message={message} />
           ))}
       </ol>
-      <MessageForm />
+      {/* lobbyId is needed to find lobby in database*/}
+      {lobbyInfo?.id && <MessageForm lobbyId={lobbyInfo.id} />}
     </section>
   );
 };
