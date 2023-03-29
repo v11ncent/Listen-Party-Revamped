@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { TMessage } from "../../../../../../../types/global";
 import styles from "./MessageForm.module.scss";
 
 const CREATE_MESSAGE_URI: string = import.meta.env.VITE_API_CREATE_MESSAGE;
 
-const MessageForm = ({ lobbyId }: { lobbyId: string }) => {
+const MessageForm = ({
+  lobbyId,
+  setMessages,
+}: {
+  lobbyId: string;
+  setMessages: Function;
+}) => {
   const [message, setMessage] = useState("");
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -18,15 +25,17 @@ const MessageForm = ({ lobbyId }: { lobbyId: string }) => {
 
     event.preventDefault();
 
-    const newMessage = {
+    const newMessage: TMessage = {
+      id: null,
       lobbyId: lobbyId,
       username: "vince1444", // temporary
       timestamp: new Date(),
-      data: message, // temporary
+      message: message,
     };
 
     const response = await axios.post(CREATE_MESSAGE_URI, newMessage);
-    console.log(response);
+    newMessage.id = response.data.message._id;
+    setMessages((array: TMessage[]) => [...array, newMessage]); // messages state from Chat.tsx
     setMessage("");
   };
 

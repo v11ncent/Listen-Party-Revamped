@@ -7,25 +7,12 @@ import MessageForm from "./Message Form/MessageForm";
 import styles from "./Chat.module.scss";
 
 const Chat = ({ lobbyInfo }: { lobbyInfo: TLobby }) => {
-  const [messages, setMessages] = useState<TMessage[] | null>(null);
+  const [messages, setMessages] = useState<TMessage[]>([]);
   const socketRef = useRef(null);
 
   useEffect(() => {
-    setMessages([
-      {
-        id: "1",
-        username: "vince144",
-        timestamp: new Date(),
-        message: "Hello, world!",
-      },
-      {
-        id: "2",
-        username: "vince144",
-        timestamp: new Date(),
-        message: "Hello, world!",
-      },
-    ]);
-  }, []);
+    console.log(messages);
+  }, [messages]);
 
   return (
     <section className={styles.chat}>
@@ -37,7 +24,9 @@ const Chat = ({ lobbyInfo }: { lobbyInfo: TLobby }) => {
           ))}
       </ol>
       {/* lobbyId is needed to find lobby in database*/}
-      {lobbyInfo?.id && <MessageForm lobbyId={lobbyInfo.id} />}
+      {lobbyInfo?.id && (
+        <MessageForm lobbyId={lobbyInfo.id} setMessages={setMessages} />
+      )}
     </section>
   );
 };
