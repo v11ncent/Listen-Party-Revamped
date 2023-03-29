@@ -32,7 +32,11 @@ const createLobby = async (req: Request, res: Response, next: NextFunction) => {
     const newLobby = new LobbyModel<TLobby>({
       name: name,
       messages: [
-        { username: "vince1444", timestamp: new Date(), data: "Hello, world!" },
+        {
+          username: "vince1444",
+          timestamp: new Date(),
+          message: "Hello, world!",
+        },
       ],
     });
 
@@ -40,8 +44,8 @@ const createLobby = async (req: Request, res: Response, next: NextFunction) => {
 
     res.status(200).json({
       status: 200,
-      message: "Lobby successfully created.",
-      data: newLobby,
+      statusMessage: "Lobby successfully created.",
+      lobby: newLobby,
     });
   } catch (error) {
     res.status(500).json({
@@ -59,9 +63,9 @@ const createMessage = async (
   const lobbyId: string = req.body?.lobbyId;
   const username: string = req.body?.username;
   const timestamp: Date = req.body?.timestamp;
-  const data: string = req.body?.data;
+  const message: string = req.body?.message;
 
-  if (!username || !timestamp || !data) {
+  if (!username || !timestamp || !message) {
     res.status(400).json({
       status: 400,
       message: "Missing parameters in request body.",
@@ -71,11 +75,12 @@ const createMessage = async (
   }
 
   const newMessage: TMessage = {
-    id: null,
     username: username,
     timestamp: timestamp,
-    data: data,
+    message: message,
   };
+
+  // refactor try..catch block
 
   try {
     const foundLobby = await LobbyModel.findById(lobbyId);
@@ -85,12 +90,21 @@ const createMessage = async (
     }
 
     foundLobby.messages.push(newMessage);
-    await foundLobby.save();
+    const response = await foundLobby.save();
+
+    // refactor
+
+    // if (response && response.messages) {
+    //   newMessage._id =
+    //     response.messages[response.messages.length - 1]._id.toString();
+    // }
+
+    console.log(newMessage);
 
     res.status(200).json({
       status: 200,
-      message: "Message successfully added to lobby.",
-      data: newMessage,
+      statusMessage: "Message successfully added to lobby.",
+      message: newMessage,
     });
   } catch (error) {
     res.status(500).json({
