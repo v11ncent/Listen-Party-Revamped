@@ -1,4 +1,8 @@
 .message {
+  max-width: 40ch;
+  word-break: break-word;
+  border: 1px solid red;
+
   .username {
     font-weight: bold;
   }
