@@ -28,7 +28,7 @@ const MessageForm = ({
     const newMessage: TMessage = {
       id: null,
       lobbyId: lobbyId,
-      username: "vince1444", // temporary
+      username: "Anonymous", // temporary
       timestamp: new Date(),
       message: message,
     };
