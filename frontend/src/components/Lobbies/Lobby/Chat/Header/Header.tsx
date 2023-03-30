@@ -1,8 +1,9 @@
 import { TLobby } from "../../../../../../../types/global/Lobby";
+import styles from "./Header.module.scss";
 
 const Header = ({ lobbyInfo }: { lobbyInfo: TLobby }) => {
   return (
-    <header>
+    <header className={styles.header}>
       {lobbyInfo ? (
         <>
           <h1>{lobbyInfo.name}</h1>

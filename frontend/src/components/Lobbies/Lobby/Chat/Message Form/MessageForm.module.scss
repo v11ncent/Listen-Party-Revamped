@@ -1,10 +1,16 @@
 @use "../../../../../styles/tokens/paddings" as paddings;
+@use "../../../../../styles/tokens/colors" as colors;
 
-.form > div {
-  display: flex;
+.form {
+  background-color: colors.$color--white-100;
+  padding: 1rem 0 1rem 0;
 
-  .input {
-    padding: paddings.$padding-input;
-    flex: 1;
+  & > div {
+    display: flex;
+
+    .input {
+      padding: paddings.$padding-input;
+      width: 100%;
+    }
   }
 }

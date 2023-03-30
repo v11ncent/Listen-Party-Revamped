@@ -15,7 +15,7 @@ const Lobby = () => {
 
   return (
     <main className={styles.lobby}>
-      <Chat lobbyInfo={lobbyInfo} />
+      <Chat lobbyInfo={lobbyInfo} />{" "}
     </main>
   );
 };

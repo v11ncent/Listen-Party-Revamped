@@ -1,6 +1,6 @@
+@use "../../../styles/tokens/heights" as heights;
+
 .lobby {
-  border: 1px solid red;
-  .header {
-    margin-bottom: 1rem;
-  }
+  padding-top: heights.$height--navbar;
+  height: calc(100% - heights.$height--navbar);
 }
