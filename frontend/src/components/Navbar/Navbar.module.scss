@@ -2,16 +2,13 @@
 @use "../../styles/tokens/heights" as heights;
 
 .nav {
-  position: fixed;
+  position: sticky;
   display: flex;
   justify-content: space-between;
   list-style-type: none;
   min-width: 100%;
   height: heights.$height--navbar;
   border-bottom: 1px solid colors.$color--grey-100;
-
-  // position: sticky;
-  // height: heights.$height--navbar;
 
   .logo {
     margin: auto 1rem;
