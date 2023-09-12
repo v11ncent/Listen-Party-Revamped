@@ -16,6 +16,7 @@ const LobbyForm = ({ addLobby }: { addLobby: Function }) => {
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
+
     const newLobby: TLobby = {
       name: lobbyName,
     };
